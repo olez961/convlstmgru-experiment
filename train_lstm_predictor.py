@@ -182,6 +182,16 @@ for e in range(100):
 
         #----cnn decoder----
 
+        # -1的位置表示自适应大小,view可以将张量转换为不同的shape而不改变数据
+        # 示例如下
+        '''
+            >>> import torch
+            >>> x = torch.tensor([1, 2, 3, 4])
+            >>> y = x.view(-1, 2)
+            >>> y
+            tensor([[1, 2],
+                    [3, 4]])
+        '''
         decoder_out_rs  = final_decoder_out.view(-1,hidden_dim,hidden_spt,hidden_spt)
 
         cnn_decoder_out_raw = F.sigmoid(cnn_decoder(decoder_out_rs))
